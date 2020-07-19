@@ -6,13 +6,15 @@ import csv
 csvpath=os.path.join("PyBank/Resources/budget_data.csv")
 #list the variable I am looking for
 Total_month=0
-Total_Revenue=0
-Monthly_Change_Revenue_List=[]
-Monthly_Change=[]
+Total_pl=0
+Monthly_Change_pl_List=[]
 Greatest_Increase=0
+Greatest_Monthly_Increase=0
 Greatest_Decrease=0
-prev_change=0
-Month_of_change=0
+Greatest_Monthly_Decrease=0
+prev_pl=0
+Month_of_change=[]
+change_in_pl=0
 
 with open (csvpath) as BudgetData:
     csvreader=csv.reader(BudgetData, delimiter=",")
@@ -23,11 +25,16 @@ with open (csvpath) as BudgetData:
 
     for i in csvreader:
         Total_month+=1
-        Total_Revenue+=int(i[1])
-        Monthly_Change= int(i[1])- prev_change
-        prev_change=int(i[1])
-        Monthly_Change_Revenue_List.append(Monthly_Change)
-    print(Monthly_Change_Revenue_List)
-    #Average_revenue_change= sum(Monthly_Change_Revenue_List)/len(Monthly_Change_Revenue_List)
-    #print(Average_revenue_change)
-    
+        Total_pl+=int(i[1])
+        Monthly_Change= int(i[1])- prev_pl
+        prev_pl=int(i[1])
+        #Month_of_change+=(i[0])
+        Monthly_Change_pl_List.append(Monthly_Change)
+        if int(i[1])>Greatest_Increase:
+            Greatest_Increase= int(i[1])
+            Greatest_Monthly_Increase= (i[0])
+        if int(i[1])<Greatest_Decrease:
+            Greatest_Decrease= int(i[1])
+            Greatest_Monthly_Decrease=(i[0])
+Average_pl_change= sum(Monthly_Change_pl_List)/Total_month
+print(Average_pl_change)
