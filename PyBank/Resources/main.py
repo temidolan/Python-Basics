@@ -37,4 +37,13 @@ with open (csvpath) as BudgetData:
             Greatest_Decrease= int(i[1])
             Greatest_Monthly_Decrease=(i[0])
 Average_pl_change= sum(Monthly_Change_pl_List)/Total_month
-print(Average_pl_change)
+#print(Average_pl_change)
+#Print Financial Analysis
+FinancialAnalysis = (
+    f"Total Months:{Total_month}\n"
+    f"Total Net Profitloss: {Total_pl}\n"
+    f"Average Change:{Average_pl_change}\n"
+    f"Greatest Increase:{Greatest_Increase, Greatest_Monthly_Increase}\n"
+    f"Greatest Decrease:{Greatest_Decrease,Greatest_Monthly_Decrease}\n"
+)
+print(FinancialAnalysis)
