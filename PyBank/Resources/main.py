@@ -1,8 +1,9 @@
 import os
 import csv
 #set the path for file
-csvpath=os.path.join("PyBank/Resources/budget_data.csv")
-#csvpath= os.path.join("Resources", "budget_data.csv")
+#csvpath=os.path.join("PyBank/Resources/budget_data.csv")
+csvpath= os.path.join("Resources", "budget_data.csv")
+exportpath= os.path.join("Resources","Analysis","BudgetData.txt")
 
 #list the variables I am looking for
 Total_month=0
@@ -52,5 +53,5 @@ FinancialAnalysis = (
 print(FinancialAnalysis)    
 
 #exporting file
-with open(BudgetData, "w") as txt_file:
-    txt_file.write(output)
+with open(exportpath, "w",) as txt_file:
+    txt_file.write(FinancialAnalysis)
