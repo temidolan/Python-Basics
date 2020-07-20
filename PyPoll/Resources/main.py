@@ -39,22 +39,23 @@ print(Unique_candidate_list)
            # Candidates_List.append(candidate_name)
         
         #print(Candidates_List)
-count=0
-count1=0
-count2=0
-count3=0
+#List variables for total count for candidates
+correy=0
+khan=0
+li=0
+OTooley =0
+
 for i in Candidates_List:
     if Unique_candidate_list[0]==i:
-        count+=1
+        correy+=1
     elif Unique_candidate_list[1]==i:
-        count1+=1
+        khan+=1
     elif Unique_candidate_list[2]==i:
-        count2+=1
+        li+=1
     elif Unique_candidate_list[3]==i:
-        count3+=1
-print(count,count1,count2,count3)
+        OTooley+=1
+print(correy,khan,li,OTooley)
 
-            
 
 
     
