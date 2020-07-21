@@ -1,61 +1,57 @@
 #Python_Challenge2
 import os
 import csv
-
 #set the path for the file
 csvpath= os.path.join("Resources/election_data.csv")
-exportpath= os.path.join("Resources","Analysis","Election_data.txt")
 #setting my variables
 Total_votes=0
 Candidates_List=[]
-Percentage_votes=0
+Percentage_votes=[]
 Unique_candidate_list=[]
-T_n_v_c=0
-
+candidates_dict = {}
+candidate=[]
+#Total_votes_0f_candidates=[]
 #reading the file
 with open(csvpath) as Election_data:
     csvreader=csv.reader(Election_data)
     print(csvreader)
-    Header=next(csvreader)
-    first_candidate=next(csvreader)
-    print(first_candidate)
-
+    header=next(csvreader)
     for i in csvreader:
         Total_votes+=1
-        candidate_name=(i[2])
-        Candidates_List.append(candidate_name)
-    for i in Candidates_List:
-        if i not in Unique_candidate_list:
-            Unique_candidate_list.append(i)
-print(Unique_candidate_list)
-        #first_candidate=(i[2])
-        #print(candidate_name)
-        #if candidate_name in Candidates_List:
-        #if candidate_name is not first_candidate[2]:
-            #Candidates_List.append(candidate_name)
-        #elif candidate_name != first_candidate[2]:
-           # Candidates_List.append(candidate_name)
-        #else:
-           # Candidates_List.append(candidate_name)
+        candidate.append(i[2])
+        candidate_name= i[2]
+        if candidate_name not in Unique_candidate_list:
+            Unique_candidate_list.append(i[2])
+            candidates_dict[i[2]]= 1
+            #add new candidate to dictionary and give them a value of 1
+        else:
+            candidates_dict[i[2]]=candidates_dict[i[2]] + 1
+            # else if the candidate is already in the candiate list, 
+            #just add one to their value
+#print(candidates_dict)
+winning=list(set(candidate))
+winning.sort()
+voters=[]
+for i in winning:
+    voters.append(candidate.count(i))
         
-        #print(Candidates_List)
-#List variables for total count for candidates
-correy=0
-khan=0
-li=0
-OTooley =0
+for candidate_name in candidates_dict:
+    votes = candidates_dict.get(candidate_name)
+    Percentage_votes=(votes/Total_votes)*100
+    #print(Percentage_votes)
+winner=winning[voters.index(max(voters))]
+print("winner: ",winner)
 
-for i in Candidates_List:
-    if Unique_candidate_list[0]==i:
-        correy+=1
-    elif Unique_candidate_list[1]==i:
-        khan+=1
-    elif Unique_candidate_list[2]==i:
-        li+=1
-    elif Unique_candidate_list[3]==i:
-        OTooley+=1
-print(correy,khan,li,OTooley)
+# #for candidate_name in candidates_dict:
+#     #print(candidate_name + )
 
-
-
-    
+# #exportingprintstatement
+# #analysis =print(
+# #f"Election Results\n"
+# #f"--------------------\n"
+# #f"Total Votes: {total_votes}\n"
+# #f"{}\n"
+# #f"-------------------------\n"
+# f"winner:{winner}\n"
+# f"------------------------"
+# )
